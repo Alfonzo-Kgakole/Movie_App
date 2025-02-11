@@ -1,12 +1,14 @@
-import React from 'react'
-import HomeScreen from '../screen/HomeScreen'
-import SearchScreen from '../screen/SearchScreen'
-import TicketScreen from '../screen/TicketScreen'
-import UserAccountScreen from '../screen/UserAccountScreen'
-import { COLOR, FONTSIZE, SPACING } from '../theme/theme'
-import CustomIcon from '../components/CustomIcon'
-import { View, StyleSheet } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import HomeScreen from '../screen/HomeScreen';
+import SearchScreen from '../screen/SearchScreen';
+import TicketScreen from '../screen/TicketScreen';
+import UserAccountScreen from '../screen/UserAccountScreen';
+import { COLOR, FONTSIZE, SPACING } from '../theme/theme';
 
 const Tab = createBottomTabNavigator()
 
@@ -26,18 +28,52 @@ const TabNavigator = () => {
             <Tab.Screen name='Home' component={HomeScreen} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused, color, size }) => {
-                    return <View style={styles.activeTabBackground}>
-                        <CustomIcon 
-                            name='videocam' 
-                            color={COLOR.White} 
+                    return <View style={[styles.activeTabBackground, focused ? { backgroundColor: COLOR.Orange } : {}]}>
+                        <Icon
+                            name='video-outline'
+                            color={COLOR.White}
                             size={FONTSIZE.size_30}
                         />
                     </View>
                 }
             }} />
-            <Tab.Screen name='Search' component={SearchScreen} />
-            <Tab.Screen name='Ticket' component={TicketScreen} />
-            <Tab.Screen name='User' component={UserAccountScreen} />
+
+            <Tab.Screen name='Search' component={SearchScreen} options={{
+                tabBarShowLabel: false,
+                tabBarIcon: ({ focused, color, size }) => {
+                    return <View style={[styles.activeTabBackground, focused ? { backgroundColor: COLOR.Orange } : {}]}>
+                        <FontAwesome
+                            name='search'
+                            color={COLOR.White}
+                            size={FONTSIZE.size_30}
+                        />
+                    </View>
+                }
+            }} />
+            <Tab.Screen name='Ticket' component={TicketScreen} options={{
+                tabBarShowLabel: false,
+                tabBarIcon: ({ focused, color, size }) => {
+                    return <View style={[styles.activeTabBackground, focused ? { backgroundColor: COLOR.Orange } : {}]}>
+                        <FontAwesome
+                            name='ticket'
+                            color={COLOR.White}
+                            size={FONTSIZE.size_30}
+                        />
+                    </View>
+                }
+            }} />
+            <Tab.Screen name='User' component={UserAccountScreen} options={{
+                tabBarShowLabel: false,
+                tabBarIcon: ({ focused, color, size }) => {
+                    return <View style={[styles.activeTabBackground, focused ? { backgroundColor: COLOR.Orange } : {}]}>
+                        <Ionicons
+                            name='person'
+                            color={COLOR.White}
+                            size={FONTSIZE.size_30}
+                        />
+                    </View>
+                }
+            }} />
         </Tab.Navigator>
     )
 }
@@ -46,7 +82,7 @@ const styles = StyleSheet.create({
     activeTabBackground: {
         backgroundColor: COLOR.Black,
         padding: SPACING.space_18,
-        borderRadius: SPACING.space_18 * 10
+        borderRadius: SPACING.space_18 * 10,
     }
 })
 
