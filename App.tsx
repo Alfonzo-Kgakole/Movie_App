@@ -4,10 +4,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './src/navigator/TabNavigator';
 import MovieDetailScreen from './src/screen/MovieDetailScreen';
 import SeatBookingScreen from './src/screen/SeatBookingScreen';
+import { useEffect } from 'react';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    FontAwesome.loadFont();
+  }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>

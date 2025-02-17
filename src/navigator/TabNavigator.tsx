@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screen/HomeScreen';
@@ -10,9 +10,14 @@ import TicketScreen from '../screen/TicketScreen';
 import UserAccountScreen from '../screen/UserAccountScreen';
 import { COLOR, FONTSIZE, SPACING } from '../theme/theme';
 
+
+
 const Tab = createBottomTabNavigator()
 
+
 const TabNavigator = () => {
+
+
     return (
         <Tab.Navigator
             screenOptions={{
@@ -29,9 +34,9 @@ const TabNavigator = () => {
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused, color, size }) => {
                     return <View style={[styles.activeTabBackground, focused ? { backgroundColor: COLOR.Orange } : {}]}>
-                        <Icon
+                        <MaterialCommunityIcons
                             name='video-outline'
-                            color={COLOR.White}
+                            color={"#000000"}
                             size={FONTSIZE.size_30}
                         />
                     </View>

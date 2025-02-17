@@ -3,6 +3,9 @@
         "BORDERRADIUS",
         "extralight",
         "FONTFAMILY",
+        "Marginated",
+        "movieid",
+        "textinput",
         "videocam"
     ]
 }
