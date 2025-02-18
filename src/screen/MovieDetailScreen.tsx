@@ -6,10 +6,12 @@ import {
   ScrollView,
   ActivityIndicator,
   StatusBar,
+  ImageBackground,
 } from 'react-native';
-import {movieDetail, movieDetailCast} from '../api/apiCalls';
-import {COLOR} from '../theme/theme';
+import {movieDetail, movieDetailCast, baseImagePath} from '../api/apiCalls';
+import {COLOR, SPACING} from '../theme/theme';
 import AppHeader from '../components/AppHeader';
+import LinearGradient from 'react-native-linear-gradient';
 
 // function
 const getMovieDetail = async (movieId: number) => {
@@ -23,6 +25,7 @@ const getMovieDetail = async (movieId: number) => {
 };
 
 const getMovieCastDetail = async (movieId: number) => {
+  console.log(movieDetail(movieId))
   try {
     let response = await fetch(movieDetailCast(movieId));
     let json = await response.json();
@@ -43,7 +46,7 @@ const MovieDetailScreen = ({navigation, route}: any) => {
       try {
         const [movie, cast] = await Promise.all([
           fetch(movieDetail(route.params.movieId)).then(res => res.json()),
-          fetch(movieDetailCast(route.params.movieId)).then(res => res.json())
+          fetch(movieDetailCast(route.params.movieId)).then(res => res.json()),
         ]);
         setMovieData(movie);
         setMovieCastData(cast);
@@ -59,27 +62,52 @@ const MovieDetailScreen = ({navigation, route}: any) => {
 
   if (!movieData || !movieCastData) {
     return (
-      <ScrollView style={styles.container}
+      <ScrollView
+        style={styles.container}
         contentContainerStyle={styles.scrollViewContainer}
         bounces={false}
-        showsVerticalScrollIndicator={false}
-      >
-        <View>
-          
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.appHeaderContainer}>
+          <AppHeader
+            name="times"
+            header={'movie details'}
+            action={() => navigation.goBack()}
+          />
         </View>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size={"large"} color={COLOR.Black} />
+          <ActivityIndicator size={'large'} color={COLOR.Orange} />
         </View>
       </ScrollView>
     );
   }
 
   return (
-    <View style={styles.container}>
-    <StatusBar hidden />
-    
-   <Text>Alfonzo</Text>
-  </View>
+    <ScrollView
+    style={styles.container}
+    bounces={false}
+    showsVerticalScrollIndicator={false}>
+      <StatusBar hidden />
+
+      <View>
+      <ImageBackground
+          source={{
+            uri: baseImagePath('w780', movieData?.backdrop_path*),
+          }}
+          style={styles.imageBG}>
+          <LinearGradient
+            colors={[COLOR.BlackRGB10, COLOR.Black]}
+            style={styles.linearGradient}>
+            <View style={styles.appHeaderContainer}>
+              <AppHeader
+                name="close"
+                header={''}
+                action={() => navigation.goBack()}
+              />
+            </View>
+          </LinearGradient>
+        </ImageBackground>
+      </View>
+  </ScrollView>
   );
 };
 
@@ -87,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: COLOR.Orange,
+    backgroundColor: COLOR.Black,
   },
   loadingContainer: {
     flex: 1,
@@ -97,6 +125,33 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flex: 1,
   },
+  appHeaderContainer: {
+    marginHorizontal: SPACING.space_36,
+    marginTop: SPACING.space_20 * 2
+  },
+  imageBG: {
+    width: "100%",
+    aspectRatio: 3072 / 1727,
+  },
+  linearGradient: {
+    height: "100%"
+  },
+  cardImage: {},
+  clockIcon: {},
+  timeContainer: {},
+  runtimeText:{},
+  title: {},
+  genreContainer: {},
+  genreBox: {},
+  genreText: {},
+  tagline: {},
+  infoContainer: {},
+  rateContainer: {},
+  starIcon: {},
+  descriptionText: {},
+  containerGap24: {},
+  buttonBG: {},
+  buttonText: {}
 });
 
 export default MovieDetailScreen;

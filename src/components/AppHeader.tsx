@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/fontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   BORDERRADIUS,
   COLOR,
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "space-between"
+    
   },
   iconStyle: {
     color: COLOR.White,
