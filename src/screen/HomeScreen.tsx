@@ -25,7 +25,6 @@ import MovieCard from '../components/MovieCard';
 const {width, height} = Dimensions.get('window');
 
 const getNowPlayingMovieList = async () => {
-  console.log(nowPlayingMovies);
   try {
     let response = await fetch(nowPlayingMovies);
     let json = await response.json();
@@ -132,6 +131,7 @@ const HomeScreen = ({navigation}: any) => {
         <FlatList
           horizontal
           data={popularMoviesList}
+          showsHorizontalScrollIndicator={false}
           keyExtractor={(item: any) => item.id}
           contentContainerStyle={styles.containerGap}
           bounces={false}
@@ -168,6 +168,7 @@ const HomeScreen = ({navigation}: any) => {
         <CategoryHeader title={'Popular'} />
         <FlatList
           horizontal
+          showsHorizontalScrollIndicator={false}
           data={popularMoviesList}
           keyExtractor={(item: any) => item.id}
           decelerationRate={0}
@@ -191,6 +192,7 @@ const HomeScreen = ({navigation}: any) => {
         <FlatList
           horizontal
           data={upComingMovieList}
+          showsHorizontalScrollIndicator={false}
           keyExtractor={(item: any) => item.id}
           decelerationRate={0}
           contentContainerStyle={styles.containerGap}
